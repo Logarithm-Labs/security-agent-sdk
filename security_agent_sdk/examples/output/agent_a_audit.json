@@ -1,0 +1,15 @@
+{
+  "auditedFiles": 13,
+  "auditedContracts": 11,
+  "vulnerabilityCount": {
+    "high": 0,
+    "medium": 1,
+    "low": 14,
+    "informational": 7,
+    "optimization": 0
+  },
+  "totalLines": 2527,
+  "securityScore": 98.5
+}
+
+

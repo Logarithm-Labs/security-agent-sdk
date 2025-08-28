@@ -1,0 +1,9 @@
+{
+  "vault": { "vault_address": "0xabc...", "chain": "Ethereum" },
+  "contracts": [
+    { "address": "0xdef...", "chain": "Ethereum" }
+  ],
+  "github_repo_url": "https://github.com/org/repo"
+}
+
+
