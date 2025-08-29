@@ -7,13 +7,13 @@ from pydantic import ConfigDict
 class Contract(BaseModel):
     model_config = ConfigDict(extra="forbid")
     address: str
-    chain: str
+    chain: int
 
 
 class Vault(BaseModel):
     model_config = ConfigDict(extra="forbid")
     vault_address: str
-    chain: str
+    chain: int
 
 
 class RequirementScheme(BaseModel):

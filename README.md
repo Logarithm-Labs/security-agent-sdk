@@ -8,12 +8,6 @@ Python SDK that defines data models and JSON Schemas for interoperability betwee
 pip install security_agent_sdk
 ```
 
-or with Poetry:
-
-```bash
-poetry add security_agent_sdk
-```
-
 ## Quick start
 
 ```python
@@ -28,6 +22,30 @@ req = RequirementScheme(**data)
 # Validate output data
 validate_output_data(result, schema_path("output/v1/AuditResult.json"))
 summary = AuditSummary(**result)
+```
+
+### Chain IDs
+
+
+| Chain               | Chain ID |
+|---------------------|----------|
+| Ethereum Mainnet    | 1        |
+| Optimism            | 10       |
+| BNB Smart Chain     | 56       |
+| Polygon (Mainnet)   | 137      |
+| Arbitrum One        | 42161    |
+| Base                | 8453     |
+
+### Example input data:
+
+```json
+{
+  "vault": { "vault_address": "0xabc...", "chain": 1 },
+  "contracts": [
+    { "address": "0xdef...", "chain": 1 }
+  ],
+  "github_repo_url": "https://github.com/org/repo"
+}
 ```
 
 ## License

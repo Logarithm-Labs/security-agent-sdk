@@ -8,7 +8,7 @@
       "type": "object",
       "properties": {
         "vault_address": { "type": "string" },
-        "chain": { "type": "string" }
+        "chain": { "type": "integer" }
       },
       "required": ["vault_address", "chain"],
       "additionalProperties": false
@@ -19,7 +19,7 @@
         "type": "object",
         "properties": {
           "address": { "type": "string" },
-          "chain": { "type": "string" }
+          "chain": { "type": "integer" }
         },
         "required": ["address", "chain"],
         "additionalProperties": false
