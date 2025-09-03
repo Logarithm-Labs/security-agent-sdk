@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 from virtuals_acp import ACPJob, ACPJobPhase, ACPMemo, IDeliverable, VirtualsACP
 from virtuals_acp.env import EnvSettings
 
-from security_agent_sdk.models.input import RequirementScheme
-from security_agent_sdk.models.output import AuditResult, VulnerabilityCount
+from security_agent_sdk.models.request import RegistrationRequest
+from security_agent_sdk.models.response import AuditResponse, VulnerabilityCount
 
 load_dotenv(override=True)
 
@@ -22,7 +22,7 @@ class SecurityAgent(metaclass=ABCMeta):
     """
 
     @abstractmethod
-    def process_request(self, requirement: RequirementScheme) -> AuditResult:
+    def process_request(self, requirement: RegistrationRequest) -> AuditResponse:
         """
         Perform an audit based on the provided requirements.
 
@@ -30,7 +30,7 @@ class SecurityAgent(metaclass=ABCMeta):
             requirement: Scheme with data for audit (contracts, repository, etc.).
 
         Returns:
-            Audit results in standardized `AuditResult` format.
+            Audit results in standardized `AuditResponse` format.
         """
         pass
 
@@ -42,9 +42,9 @@ class MockSecurityAgent(SecurityAgent):
     Does not perform real network requests.
     """
 
-    def process_request(self, requirement: RequirementScheme) -> AuditResult:
+    def process_request(self, requirement: RegistrationRequest) -> AuditResponse:
         audited_contracts = len(requirement.contracts)
-        return AuditResult(
+        return AuditResponse(
             audited_files=1,
             audited_contracts=audited_contracts,
             vulnerability_count=VulnerabilityCount(high=1, medium=2, low=3),
@@ -145,7 +145,7 @@ def seller(use_thread_lock: bool = True):
                 return
 
             try:
-                requirement = RequirementScheme.model_validate(requirement_data)
+                requirement = RegistrationRequest.model_validate(requirement_data)
             except Exception as e:
                 print(f"✖ Error parsing requirement for job {job.id}: {e}")
                 return

@@ -9,7 +9,9 @@
     "optimization": 0
   },
   "total_lines": 2527,
-  "security_score": 98.5
+  "security_score": 98.5,
+  "extra_info": {
+    "analyzed_at": "2024-01-01T00:00:00Z",
+    "analysis_duration_seconds": 120
+  }
 }
-
-

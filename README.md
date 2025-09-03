@@ -11,17 +11,17 @@ pip install security_agent_sdk
 ## Quick start
 
 ```python
-from security_agent_sdk.models.input import RequirementScheme
-from security_agent_sdk.models.output import AuditResult
+from security_agent_sdk.models.request import RegistrationRequest
+from security_agent_sdk.models.response import AuditResponse
 from security_agent_sdk.validation import validate_input_data, validate_output_data, schema_path
 
 # Validate input data (JSON object)
-validate_input_data(data, schema_path("RequirementScheme.json"))
-req = RequirementScheme(**data)
+validate_input_data(data, schema_path("RegistrationRequest.json"))
+req = RegistrationRequest(**data)
 
 # Validate output data
-validate_output_data(result, schema_path("AuditResult.json"))
-summary = AuditResult(**result)
+validate_output_data(result, schema_path("AuditResponse.json"))
+summary = AuditResponse(**result)
 ```
 
 
@@ -29,8 +29,12 @@ summary = AuditResult(**result)
 
 ```json
 {
+  "vault": {
+    "address": "0x1234567890123456789012345678901234567890",
+    "chain": "ethereum"
+  },
   "contracts": [
-    { "address": "0xdef...", "chain_id": 1 }
+    { "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd", "chain": "ethereum" }
   ],
   "github_repo_url": "https://github.com/org/repo"
 }
@@ -44,9 +48,9 @@ summary = AuditResult(**result)
 
 `security_agent_sdk/examples/seller.py` contains a minimal mock security agent wired into a job-processing loop:
 
-- `SecurityAgent` is an abstract base class that defines the `process_request(requirement: RequirementScheme) -> AuditResult` interface.
-- `MockSecurityAgent` implements the interface and returns a static `AuditResult` with snake_case fields.
-- `seller()` initializes a `VirtualsACP` client, listens for incoming jobs, validates the requirement payload with `RequirementScheme.model_validate(...)`, calls the agent, and delivers the resulting JSON back to the network.
+- `SecurityAgent` is an abstract base class that defines the `process_request(requirement: RegistrationRequest) -> AuditResponse` interface.
+- `MockSecurityAgent` implements the interface and returns a static `AuditResponse` with snake_case fields.
+- `seller()` initializes a `VirtualsACP` client, listens for incoming jobs, validates the requirement payload with `RegistrationRequest.model_validate(...)`, calls the agent, and delivers the resulting JSON back to the network.
 - A lightweight thread-based queue is used to buffer and process jobs.
 
 ### ACP Sandbox
@@ -73,7 +77,7 @@ export SELLER_ENTITY_ID=
 python -m security_agent_sdk.examples.seller
 ```
 
-The process prints lifecycle logs and responds to tasks by validating input requirements and returning an `AuditResult`.
+The process prints lifecycle logs and responds to tasks by validating input requirements and returning an `AuditResponse`.
 
 ## License
 

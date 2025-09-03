@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/output/AuditResult.json",
-  "title": "AuditResult",
+  "$id": "https://example.com/schemas/output/AuditResponse.json",
+  "title": "AuditResponse",
   "type": "object",
   "properties": {
     "audited_files": { "type": "integer", "minimum": 0 },
@@ -19,7 +19,11 @@
       "additionalProperties": false
     },
     "total_lines": { "type": "integer", "minimum": 0 },
-    "security_score": { "type": "number", "minimum": 0, "maximum": 100 }
+    "security_score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "extra_info": {
+      "type": ["object", "null"],
+      "description": "Additional information about the vault"
+    }
   },
   "required": [
     "audited_files",

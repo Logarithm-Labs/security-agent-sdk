@@ -1,13 +1,13 @@
 """Security Agent SDK package."""
 
-from .models.input import Contract, RequirementScheme
-from .models.output import AuditResult, VulnerabilityCount
+from .models.request import Contract, RegistrationRequest
+from .models.response import AuditResponse, VulnerabilityCount
 
 __all__ = [
     "Contract",
-    "RequirementScheme",
+    "RegistrationRequest",
     "VulnerabilityCount",
-    "AuditResult",
+    "AuditResponse",
 ]
 
 __version__ = "0.1.0"

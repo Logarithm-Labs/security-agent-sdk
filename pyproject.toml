@@ -25,6 +25,7 @@ classifiers = [
 dependencies = [
     "pydantic>=2.5.0",
     "jsonschema>=4.0.0",
+    "yield-analysis-sdk",
 ]
 
 [project.urls]

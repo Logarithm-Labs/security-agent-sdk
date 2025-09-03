@@ -1,20 +1,40 @@
-from security_agent_sdk.models.input import RequirementScheme
+from security_agent_sdk.models.request import RegistrationRequest
 from security_agent_sdk.validation import schema_path, validate_input_data
 
 
-def test_requirement_scheme_model():
+def test_registration_request_model():
     data = {
-        "contracts": [{"address": "0xdef", "chain_id": 1}],
+        "vault": {
+            "address": "0x1234567890123456789012345678901234567890",
+            "chain": "ethereum",
+        },
+        "contracts": [
+            {
+                "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+                "chain": "ethereum",
+            }
+        ],
         "github_repo_url": "https://github.com/org/repo",
     }
-    obj = RequirementScheme(**data)
-    assert obj.contracts[0].address == "0xdef"
-    assert obj.contracts[0].chain_id == 1
+    obj = RegistrationRequest(**data)
+    assert obj.vault.address == "0x1234567890123456789012345678901234567890"
+    assert obj.vault.chain == "ethereum"
+    assert obj.contracts[0].address == "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd"
+    assert obj.contracts[0].chain == "ethereum"
 
 
-def test_requirement_scheme_schema_validation():
+def test_registration_request_schema_validation():
     data = {
-        "contracts": [{"address": "0xdef", "chain_id": 1}],
+        "vault": {
+            "address": "0x1234567890123456789012345678901234567890",
+            "chain": "ethereum",
+        },
+        "contracts": [
+            {
+                "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+                "chain": "ethereum",
+            }
+        ],
         "github_repo_url": "https://github.com/org/repo",
     }
-    validate_input_data(data, schema_path("RequirementScheme.json"))
+    validate_input_data(data, schema_path("RegistrationRequest.json"))
