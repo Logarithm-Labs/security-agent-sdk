@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/output/v1/AuditResult.json",
-  "title": "AuditSummary",
+  "$id": "https://example.com/schemas/output/AuditResult.json",
+  "title": "AuditResult",
   "type": "object",
   "properties": {
-    "auditedFiles": { "type": "integer", "minimum": 0 },
-    "auditedContracts": { "type": "integer", "minimum": 0 },
-    "vulnerabilityCount": {
+    "audited_files": { "type": "integer", "minimum": 0 },
+    "audited_contracts": { "type": "integer", "minimum": 0 },
+    "vulnerability_count": {
       "type": "object",
       "properties": {
         "high": { "type": "integer", "minimum": 0 },
@@ -18,17 +18,16 @@
       "required": ["high", "medium", "low", "informational", "optimization"],
       "additionalProperties": false
     },
-    "totalLines": { "type": "integer", "minimum": 0 },
-    "securityScore": { "type": "number", "minimum": 0, "maximum": 100 }
+    "total_lines": { "type": "integer", "minimum": 0 },
+    "security_score": { "type": "number", "minimum": 0, "maximum": 100 }
   },
   "required": [
-    "auditedFiles",
-    "auditedContracts",
-    "vulnerabilityCount",
-    "totalLines",
-    "securityScore"
+    "audited_files",
+    "audited_contracts",
+    "vulnerability_count",
+    "total_lines",
+    "security_score"
   ],
   "additionalProperties": true
 }
-
 

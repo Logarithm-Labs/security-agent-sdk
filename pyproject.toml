@@ -112,6 +112,17 @@ dev = [
     "mypy>=1.16.1",
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
+    "ruff>=0.1.0",
 ]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+select = ["E", "F", "W", "I"] # Basic error, flake8, warning, isort rules
+ignore = []
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"] # Ignore unused imports in __init__.py
+"tests/*" = ["E501"] # Ignore line length in tests
 
 

@@ -1,7 +1,4 @@
-from typing import Dict, Optional
-
-from pydantic import BaseModel, Field
-from pydantic import ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VulnerabilityCount(BaseModel):
@@ -13,12 +10,10 @@ class VulnerabilityCount(BaseModel):
     optimization: int = 0
 
 
-class AuditSummary(BaseModel):
+class AuditResult(BaseModel):
     model_config = ConfigDict(extra="allow", populate_by_name=True)
-    auditedFiles: int = Field(..., ge=0)
-    auditedContracts: int = Field(..., ge=0)
-    vulnerabilityCount: VulnerabilityCount = Field()
-    totalLines: int = Field(..., ge=0)
-    securityScore: float = Field(..., ge=0.0, le=100.0, description="0-100")
-
-
+    audited_files: int = Field(..., ge=0)
+    audited_contracts: int = Field(..., ge=0)
+    vulnerability_count: VulnerabilityCount = Field()
+    total_lines: int = Field(..., ge=0)
+    security_score: float = Field(..., ge=0.0, le=100.0, description="0-100")
