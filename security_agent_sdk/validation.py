@@ -4,25 +4,8 @@ from typing import Any, Dict
 
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
-from pydantic import field_validator
-from yield_analysis_sdk.validators import normalize_address
 
 from .exceptions import InvalidInputDataError, InvalidOutputDataError
-
-
-class AddressValidatorMixin:
-    """Mixin class that provides address validation functionality."""
-
-    @field_validator("address", mode="before")
-    @classmethod
-    def validate_address(cls, v) -> str:
-        """Validate address format and normalize it."""
-        if isinstance(v, str):
-            return normalize_address(v)
-        elif v is None:
-            raise InvalidInputDataError("Address cannot be None")
-        else:
-            return str(v)
 
 
 def schema_path(relative: str) -> str:
