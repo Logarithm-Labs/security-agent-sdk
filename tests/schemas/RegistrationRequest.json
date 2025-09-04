@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/input/RegistrationRequest.json",
+  "title": "RegistrationRequest",
+  "type": "object",
+  "properties": {
+    "vault": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "chain": { "type": "string" }
+      },
+      "required": ["address", "chain"],
+      "additionalProperties": false
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": { "type": "string" },
+          "chain": { "type": "string" }
+        },
+        "required": ["address", "chain"],
+        "additionalProperties": false
+      }
+    },
+    "github_repo_url": { "type": "string", "format": "uri" }
+  },
+  "required": ["vault"],
+  "additionalProperties": false
+}
+
