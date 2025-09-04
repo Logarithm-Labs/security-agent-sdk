@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "security-agent-sdk"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python SDK for Security Agent specifications (models and JSON Schemas)"
 readme = "README.md"
 license = {text = "MIT"}
